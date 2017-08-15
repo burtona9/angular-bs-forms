@@ -1,0 +1,72 @@
+<script src="js/forms.js"></script>
+<div class="row">
+    <form class="col-sm-8" name="claimForm" ng-submit="claimSubmit()" novalidate> {{claimForm.$valid}}
+        <div class="panel panel-danger error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1" ng-show="!claimForm.$valid && formSubmitted" autofocus>
+            <div class="panel-body">
+                <h1 class="error-summary-heading">Message to alert the user to a problem goes here</h1>
+                <p>Optional description of the errors and how to correct them</p>
+                <ul class="list-unstyled error-summary-list">
+                    <li><a href="#">Descriptive link to the question with an error</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <legend>What are you claiming for?</legend>
+                <div class="radio radio-inline">
+                    <label class="block-label selection-button-radio" for="radio-inline-1">
+                        <input id="radio-inline-1" type="radio" name="typeSelection" value="time" ng-model="type" ng-click="typeSelected('time')"> Time </label>
+                </div>
+                <div class="radio radio-inline">
+                    <label class="block-label selection-button-radio" for="radio-inline-2">
+                        <input id="radio-inline-2" type="radio" name="typeSelection" value="mileage" ng-model="type" ng-click="typeSelected('mileage')"> Mileage </label>
+                </div>
+                <div class="radio radio-inline">
+                    <label class="block-label selection-button-radio" for="radio-inline-3">
+                        <input id="radio-inline-3" type="radio" name="typeSelection" value="expenses" ng-model="type" ng-click="typeSelected('travel')"> Expenses </label>
+                </div>
+            </div>
+        </div>
+        <div class="row animate-show" ng-show="type != null && subtypes.length > 1">
+            <hr>
+            <div class="form-group col-sm-6">
+                <label class="form-label" for="select-box">Select a claim type</label>
+                <select class="form-control" ng-model="subtype" ng-options="x.text for x in subtypes"> </select>
+            </div>
+        </div>
+        <hr>
+        <p ng-show="type != null && subtypes.length == 1">{{subtypes[0].text}} claim</p>
+        <time-form></time-form>
+        <div class="panel panel-default desc-panel" ng-show="subtype.descriptionReq">
+            <div class="panel-body">
+                <div class="row animate-show" ng-show="subtype.descriptionReq">
+                    <div class="col-lg-12">
+                        <div class="form-group" ng-class="{'error' : claimForm.description.$invalid && !claimForm.description.$pristine}">
+                            <label class="form-label " for="description ">Description</label> <span class="error-message" ng-show="claimForm.description.$invalid && !claimForm.description.$pristine">Description is required</span>
+                            <textarea name="description" class="form-control " ng-model="claim.description " id="description " rows="6 " ng-required="subtype.descriptionReq"> </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <milage-form></milage-form>
+        <div class="panel panel-default approver-panel" ng-show="subtype != null">
+            <div class="panel-body">
+                <div class="row animate-show " ng-show="subtype !=null ">
+                    <div class="form-group myfade col-sm-6" ng-class="{'error' : claimForm.approver.$invalid && !claimForm.approver.$pristine}">
+                        <label class="form-label " for="select-box ">Select an Approver <span class="error-message">Approver is required</span></label>
+                        <select name="approver" required ng-required="true" class="form-control " id="select-box " ng-model="claim.approver">
+                            <option>mr peeper</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <hr>
+            <div class="col-sm-12 ">
+                <button type="submit" class="btn btn-green ">Submit claim</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,37 @@
+<div class="panel panel-default time-panel " ng-show="subtype.endTimeReq || subtype.startTimeReq || subtype.hoursReq">
+    <div class="panel-body ">
+        <div ng-controller="datepickCtrl" class="animate-show" ng-show="subtype.startDateReq">
+            <div class="row ">
+                <div class="col-md-6 ">
+                    <label class="form-label " for="date ">Start date</label>
+                    <p class="input-group ">
+                        <input id="date" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date=" '2015-06-22' " datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /> <span class="input-group-btn ">
+                <button type="button " class="btn btn-default " ng-click="open($event) "><i class="glyphicon glyphicon-calendar "></i></button>
+              </span> </p>
+                </div>
+            </div>
+        </div>
+        <div class="row animate-show " ng-show="subtype.startTimeReq ">
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{'error' : claimForm.startTime.$invalid && !claimForm.startTime.$pristine}">
+                    <label class="form-label" for="startTime">Start time</label>
+                    <input name="startTime" type="text" ng-model="claim.startTime" class="form-control" id="startTime" ng-required="subtype.startTimeReq"> </div>
+            </div>
+        </div>
+        <div class="row animate-show " ng-show="subtype.endTimeReq ">
+            <div class="col-sm-6 ">
+                <div class="form-group " ng-class="{'error' : claimForm.endTime.$invalid && !claimForm.endTime.$pristine}">
+                    <label class="form-label" for="endTime">End time</label>
+                    <input name="endTime" type="text " ng-model="claim.endTime " class="form-control" id="endTime " ng-required="subtype.endTimeReq"> </div>
+            </div>
+        </div>
+        <div class="row animate-show" ng-show="subtype.hoursReq">
+            <div class="form-group" ng-class="{'error' : claimForm.hours.$invalid && !claimForm.hours.$pristine}">
+                <div class="col-sm-4 col-xs-6">
+                    <label class="form-label" for="hours">Number of hours</label> <span ng-messages="myForm.myName.$error" style="color:maroon" role="alert">
+                        <span ng-message="required">hours is required</span> <span ng-message="minlength">Your field is too short</span> <span ng-message="maxlength">Your field is too long</span> </span>
+                    <input name="hours" ng-required="subtype.hoursReq" class="form-control" type="number" ng-model="claim.hours" id="hours"> </div>
+            </div>
+        </div>
+    </div>
+</div>

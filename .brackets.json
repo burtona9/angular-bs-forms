@@ -1,0 +1,21 @@
+{
+    "sass.enabled": false
+    , "path": {
+        "scss/*.scss": {
+            "sass.enabled": true
+            , "sass.options": {
+                "includePaths": []
+                , "outputDir": "../css"
+                , "outputStyle": "nested"
+                , "sourceComments": false
+            }
+            , "linting.collapsed": false
+            , "themes.theme": "dark-theme"
+            , "beautify.io.on_save": true
+            , "me.drewh.jsbeautify.on_save": true
+            , "fonts.fontSize": "16px"
+            , "showLineNumbers": false
+            , "useTabChar": false
+        }
+    }
+}

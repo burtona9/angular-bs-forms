@@ -1,0 +1,24 @@
+<div class="panel panel-default mileage-panel" ng-show="type == 'mileage'">
+    <div class="panel-body">
+        <div class="form-group animate-show" ng-if="subtype.startLocationReq">
+            <label class="form-label" for="startLocation">Start location</label>
+            <input type="text" class="form-control" id="startLocation"> </div>
+        <div class="form-group animate-show" ng-show="subtype.destinationReq" ng-class="{'error' : claimForm.destination.$invalid && !claimForm.destination.$pristine}">
+            <label class="form-label" for="destination">Destination <span ng-messages="claimForm.destination.$error">
+                    <span class="error-message" ng-message="required">Destination is required</span> <span class="error-message" ng-message="minlength">Destination text is too long</span> <span class="error-message" ng-message="maxlength">Destination is required</span> </span>
+            </label>
+            <input name="destination" type="text" ng-model="claim.destination" class="form-control" id="destination" ng-required="subtype.destinationReq" ng-minlength="1" ng-maxlength="11"> </div>
+        <div class="row animate-show" ng-if="subtype.milesReq">
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group" ng-class="{'error' : claimForm.miles.$invalid && !claimForm.miles.$pristine}">
+                    <label class="form-label" for="miles">How many miles <span class="error-message">{{claimForm.miles.$error}}</span> </label>
+                    <input min="1" max="100" type="number" class="form-control" id="miles" name="miles" ng-required="subtype.milesReq"> </div>
+                <div ng-messages="claimForm.miles.$error">
+                    <div class="error-message" ng-message="required">Miles is required</div>
+                    <div class="error-message" ng-message="minlength">Must be greater than 0</div>
+                    <div class="error-message" ng-message="maxlength">Must be less than 100</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
